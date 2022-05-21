@@ -4,8 +4,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public CharacterController controller;   
-    public float moveSpeed = 6f;
+    public CharacterController controller;
+    public Animator animator;
+    public float moveSpeed;
+    private float sprintSpeed = 3f;
+    private float walkSpeed = 1f;
+    private float sneakSpeed = 0.5f;
     public Camera playerCam;
     float gravity;
     float turnSmoothTime = 0.1f;
@@ -21,7 +25,9 @@ public class PlayerController : MonoBehaviour
     }
     public void Update()
     {
+        PlayerMoveSpeedModifier();
         PlayerMove();
+        PlayerIdle();
 
         LeftMouseClick();
 
@@ -74,6 +80,22 @@ public class PlayerController : MonoBehaviour
         focus = null;
     }
 
+    void PlayerIdle()
+    {
+        if(Input.GetAxisRaw("Horizontal") < 0.1f && Input.GetAxisRaw("Vertical") < 0.1f)
+        {
+            if (Input.GetAxisRaw("Horizontal") > -0.1f && Input.GetAxisRaw("Vertical") > -0.1f)
+            {
+                animator.SetBool("isWalking", false);
+            }
+        }
+    }
+
+    void PlayerMoveSpeedModifier()
+    {
+        
+    }
+
     void PlayerMove()
     {
         float horizontal = Input.GetAxis("Horizontal");
@@ -84,13 +106,15 @@ public class PlayerController : MonoBehaviour
 
         if (dir.magnitude != 0)
         {
+            animator.SetBool("isWalking", true);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
             controller.Move(dir * moveSpeed * Time.deltaTime);
         }
-
+        
         gravity -= (float)9.81 * Time.deltaTime;
         dir.y = gravity;
         controller.Move(dir * Time.deltaTime);
         if (controller.isGrounded) gravity = 0;
+
     }
 }
