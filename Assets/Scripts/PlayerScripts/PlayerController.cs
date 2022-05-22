@@ -6,10 +6,10 @@ public class PlayerController : MonoBehaviour
 {
     public CharacterController controller;
     public Animator animator;
-    public float moveSpeed;
-    private float sprintSpeed = 3f;
-    private float walkSpeed = 1f;
-    private float sneakSpeed = 0.5f;
+    private float moveSpeed;
+    public float sprintSpeed = 3f;
+    public float walkSpeed = 1f;
+    public float sneakSpeed = 0.5f;
     public Camera playerCam;
     float gravity;
     float turnSmoothTime = 0.1f;
@@ -22,10 +22,10 @@ public class PlayerController : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         distanceFromGround = GetComponent<Collider>().bounds.extents.y;
+        moveSpeed = walkSpeed;
     }
     public void Update()
     {
-        PlayerMoveSpeedModifier();
         PlayerMove();
         PlayerIdle();
 
@@ -91,13 +91,20 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void PlayerMoveSpeedModifier()
-    {
-        
-    }
-
     void PlayerMove()
     {
+        if (Input.GetKeyDown(KeyCode.LeftShift))
+        {
+            moveSpeed = sprintSpeed;
+        }
+        if (Input.GetButtonDown("Sneak"))
+        {
+            moveSpeed = sneakSpeed;
+        }
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            moveSpeed = walkSpeed;
+        }
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
         Vector3 dir = new Vector3(horizontal, 0, vertical);
