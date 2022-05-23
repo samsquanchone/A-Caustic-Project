@@ -93,19 +93,15 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
-         
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             moveSpeed = sprintSpeed;
-
-        }
-        if (Input.GetButtonDown("Sneak"))
-        {
-            moveSpeed = sneakSpeed;
+            animator.speed = sprintSpeed;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {
             moveSpeed = walkSpeed;
+            animator.speed = walkSpeed;
         }
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
