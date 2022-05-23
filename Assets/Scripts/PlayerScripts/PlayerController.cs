@@ -93,9 +93,11 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
+         
         if (Input.GetKeyDown(KeyCode.LeftShift))
         {
             moveSpeed = sprintSpeed;
+
         }
         if (Input.GetButtonDown("Sneak"))
         {
