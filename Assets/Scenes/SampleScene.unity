@@ -993,7 +993,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d9a8e81fef242f546b4ddc5357613349, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 23.71
+      value: 25.146
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: d9a8e81fef242f546b4ddc5357613349, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2549,6 +2549,8 @@ GameObject:
   - component: {fileID: 1819367301}
   - component: {fileID: 1819367300}
   - component: {fileID: 1819367302}
+  - component: {fileID: 1819367305}
+  - component: {fileID: 1819367304}
   - component: {fileID: 1819367303}
   m_Layer: 0
   m_Name: GameManager
@@ -2613,6 +2615,53 @@ MonoBehaviour:
   mapWidthInTiles: 10
   mapDepthInTiles: 10
   tilePrefab: {fileID: 4615044572830286190, guid: 7d75268bdd1c64339ace1846f46d13be, type: 3}
+  centerVertexZ: 10
+  maxDistanceZ: 10
+  treeGeneration: {fileID: 1819367304}
+--- !u!114 &1819367304
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819367299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 568641a9b09ec4ace9ff819807c9b837, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  noiseMapGeneration: {fileID: 1819367305}
+  waves:
+  - seed: 7861
+    frequency: 1
+    amplitude: 1
+  - seed: 6711
+    frequency: 2
+    amplitude: 2
+  - seed: 8722
+    frequency: 4
+    amplitude: 4
+  levelScale: 10
+  neighborRadius:
+  - 3
+  - 2
+  - 1
+  treePrefab:
+  - {fileID: 5141645209801352665, guid: 9aa1bde74d4b9c145b96383b5c8353bc, type: 3}
+  - {fileID: 5141645209801352665, guid: 9aa1bde74d4b9c145b96383b5c8353bc, type: 3}
+  - {fileID: 5141645209801352665, guid: 9aa1bde74d4b9c145b96383b5c8353bc, type: 3}
+--- !u!114 &1819367305
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819367299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c5a6a551e261a4491975d98c53c3455c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!224 &1827001004 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8724998698384630800, guid: 97766e0377a91a943a7066eeaee84538, type: 3}
@@ -3087,7 +3136,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   controller: {fileID: 0}
   animator: {fileID: 9163470713691116549}
-  moveSpeed: 1
+  sprintSpeed: 3
+  walkSpeed: 1
+  sneakSpeed: 0.5
   playerCam: {fileID: 963194227}
   distanceFromGround: 0
   focus: {fileID: 0}
