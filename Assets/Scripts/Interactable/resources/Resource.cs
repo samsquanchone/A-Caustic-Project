@@ -7,17 +7,19 @@ public class Resource : Interactable
     public Item resourceItem;
     public ResourceType resourceType = new ResourceType();
     public float harvestTime = 10f;
-    private bool isHarvesting = false;
+    public bool isHarvesting = false;
 
-    public override void interact()
+    public override void Interact()
     {
-        StartCoroutine(harvestEnumerator(harvestTime));
+        if (!Inventory.instance.isFull)
+            StartCoroutine(harvestEnumerator(harvestTime));
     }
     IEnumerator harvestEnumerator(float Time) // This is harvest methods, so player interacts plays animation and collects resource with delay
     {
         if (isHarvesting)
             yield break;
 
+        
         isHarvesting = true;
         animator.SetBool("harvesting", true);
         animator.speed = 2f;
@@ -35,7 +37,8 @@ public class Resource : Interactable
     {
         Debug.Log("Picked up " + resourceItem.name);
         Inventory.instance.Add(resourceItem);
-        Destroy(gameObject);       
+        Destroy(gameObject);
+        pickedUp = true;
     }
 }
 

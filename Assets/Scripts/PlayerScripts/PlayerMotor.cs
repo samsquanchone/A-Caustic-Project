@@ -26,7 +26,10 @@ public class PlayerMotor : MonoBehaviour
     }
     public void Update()
     {
-        PlayerMove();
+        if (!GetComponent<PlayerInteraction>().isInteracting)
+        { 
+            PlayerMove();
+        }
         PlayerIdle();      
 
     }

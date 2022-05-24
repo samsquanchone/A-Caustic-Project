@@ -7,34 +7,37 @@ public class Interactable : MonoBehaviour
     public float radius = 3f;
     public Transform interactionTransform;
 
-    bool isFocus = false;
+    public bool isFocus = false;
     GameObject playerObj;
     Transform player;
+    [HideInInspector]
     public Animator animator;
-    bool hasInteracted = false;
+    public bool hasInteracted = false;
+    public bool pickedUp = false;
 
     
 
     private void Update()
     {
+        /*
         if (isFocus && !hasInteracted) // Check theres nothing focused and hasnt interacted
         {
             float distance = Vector3.Distance(player.position, interactionTransform.position); // Getting distance from player to interactable
             if (distance <= radius) // compare distance to interactable range (radius)
             { 
                 // Can interact so call the objects interact
-                hasInteracted = true; 
+                hasInteracted = true;
                 interact();
             }
             //else Debug.Log("Out of range");
-        }
+        }*/
     }
-    public virtual void interact()
+    public virtual void Interact()
     {
-        // This is meant to be overidden
+        // This is meant ot be overiiden
         Debug.Log("Interacted with " + transform.name);
-
     }
+
 
     public void onFocused(GameObject playerObj)
     {
@@ -61,4 +64,6 @@ public class Interactable : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(interactionTransform.position, radius);
     }
+
+    
 }

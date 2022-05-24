@@ -7,17 +7,19 @@ public class itemPickup : Interactable
     public Item item;
 
 
-    public override void interact()
+    public override void Interact()
     {
         //base.interact();
 
-        pickUp();        
+        PickUp();      
+        
     }
 
-    void pickUp()
+    void PickUp()
     {        
         Debug.Log("Picked up " + item.name);
         Inventory.instance.Add(item);
         Destroy(gameObject);
+        pickedUp = true;
     }
 }

@@ -23,21 +23,34 @@ public class Inventory : MonoBehaviour
     public OnItemChanged onItemChangedCallback;
 
     public int inventorySize = 20;
+    public bool isFull = false;
     public List<Item> items = new List<Item>();
+
+    private void Update()
+    {
+        if (items.Count == inventorySize)
+        {
+            isFull = true;
+            Debug.Log("Inventory Full");
+        }
+        else if (items.Count > inventorySize)
+        {
+            isFull = false;
+        }
+    }
 
     public bool Add(Item item)
     {
+
         if(!item.isDefaultItem)
         {
             if(items.Count >= inventorySize) // Check inventory size
             {
                 Debug.Log("Not enough space");
                 return false; ;
-            }          
-
+            }
             
             items.Add(item);
-
             if (onItemChangedCallback != null) // for UI stuff
                 onItemChangedCallback.Invoke();
 
