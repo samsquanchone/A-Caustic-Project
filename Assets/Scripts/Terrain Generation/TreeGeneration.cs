@@ -8,8 +8,8 @@ public class TreeGeneration : MonoBehaviour
      private ProceduralGeneration noiseMapGeneration;
      [SerializeField]
      private Wave[] waves;
-    [SerializeField]
-    private float levelScale;
+           [SerializeField]
+            private float levelScale;
      [SerializeField]
      private float[] neighborRadius;
      [SerializeField]
@@ -19,7 +19,7 @@ public class TreeGeneration : MonoBehaviour
      public void GenerateTrees(int levelDepth, int levelWidth,  float distanceBetweenVertices, LevelData levelData) {
      
        // generate a tree noise map using Perlin Noise
-       float[,] treeMap = noiseMapGeneration.GenerateNoiseMap (levelDepth, levelWidth, levelScale, 0, 0, this.waves);
+       float[,] treeMap = this.noiseMapGeneration.GenerateNoiseMap (levelDepth, levelWidth, levelScale, 0, 0, this.waves);
        float levelSizeX = levelWidth * distanceBetweenVertices;
        float levelSizeZ = levelDepth * distanceBetweenVertices;
        
@@ -69,7 +69,7 @@ public class TreeGeneration : MonoBehaviour
              if (treeValue == maxValue) {
                Vector3 treePosition = new Vector3(xIndex*distanceBetweenVertices, meshVertices[vertexIndex].y, zIndex*distanceBetweenVertices);
                GameObject tree = Instantiate (this.treePrefab[biome.index], treePosition, Quaternion.identity) as GameObject;
-               tree.transform.localScale = new Vector3 (1f, 1f, 1f);
+               tree.transform.localScale = new Vector3 (0.05f, 0.05f, 0.05f);
              }
            }
          }
