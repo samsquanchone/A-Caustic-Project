@@ -2549,9 +2549,10 @@ GameObject:
   - component: {fileID: 1819367301}
   - component: {fileID: 1819367300}
   - component: {fileID: 1819367302}
-  - component: {fileID: 1819367305}
   - component: {fileID: 1819367304}
+  - component: {fileID: 1819367307}
   - component: {fileID: 1819367303}
+  - component: {fileID: 1819367306}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2572,6 +2573,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inventorySize: 20
+  isFull: 0
   items: []
 --- !u!4 &1819367301
 Transform:
@@ -2613,12 +2615,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ac94273cd8be422bb653c4f3e4b1392, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mapWidthInTiles: 10
-  mapDepthInTiles: 10
+  mapWidthInTiles: 50
+  mapDepthInTiles: 50
   tilePrefab: {fileID: 4615044572830286190, guid: 7d75268bdd1c64339ace1846f46d13be, type: 3}
-  centerVertexZ: 10
-  maxDistanceZ: 10
+  centerVertexZ: 500
+  maxDistanceZ: 500
   treeGeneration: {fileID: 1819367304}
+  riverGeneration: {fileID: 1819367306}
 --- !u!114 &1819367304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2631,7 +2634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568641a9b09ec4ace9ff819807c9b837, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  noiseMapGeneration: {fileID: 1819367305}
+  noiseMapGeneration: {fileID: 1819367307}
   waves:
   - seed: 7861
     frequency: 1
@@ -2651,7 +2654,22 @@ MonoBehaviour:
   - {fileID: 327131373723187146, guid: b9d6d175e1424a24cb39c9c552ba40f2, type: 3}
   - {fileID: 327131373723187146, guid: b9d6d175e1424a24cb39c9c552ba40f2, type: 3}
   - {fileID: 327131373723187146, guid: b9d6d175e1424a24cb39c9c552ba40f2, type: 3}
---- !u!114 &1819367305
+--- !u!114 &1819367306
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1819367299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 069360c9f478b4f798fbc7c58249c6ac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  numberOfRivers: 10
+  heightThreshold: 0.6
+  riverColor: {r: 1, g: 0, b: 0.69943285, a: 0}
+--- !u!114 &1819367307
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2663,6 +2681,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5a6a551e261a4491975d98c53c3455c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  centerVertexZPublic: 0
+  maxDistanceZPublic: 0
 --- !u!224 &1827001004 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 8724998698384630800, guid: 97766e0377a91a943a7066eeaee84538, type: 3}
@@ -3174,3 +3194,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerCam: {fileID: 963194227}
   focus: {fileID: 0}
+  isInteracting: 0
