@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class ProceduralGeneration : MonoBehaviour
 {
+public  float centerVertexZPublic;
+public float maxDistanceZPublic;
+
+
      public float[,] noiseMap;
       public float[,] GenerateNoiseMap(int mapDepth, int mapWidth, float scale, float offsetX, float offsetZ, Wave[] waves) {
                     // create an empty noise map with the mapDepth and mapWidth coordinates
@@ -46,6 +50,8 @@ public class ProceduralGeneration : MonoBehaviour
           for (int xIndex = 0; xIndex < mapWidth; xIndex++) {
             noiseMap [mapDepth - zIndex - 1, xIndex] = noise;
             
+            centerVertexZPublic = centerVertexZ;
+            maxDistanceZPublic = maxDistanceZ;
           }
         }
         return noiseMap;
