@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMotor : MonoBehaviour
 {
     public CharacterController controller;
     public Animator animator;
@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     float turnSmoothVelocity;
     public float distanceFromGround;
 
-    public Interactable focus;
+    
 
     public void Start()
     {
@@ -27,58 +27,10 @@ public class PlayerController : MonoBehaviour
     public void Update()
     {
         PlayerMove();
-        PlayerIdle();
-
-        LeftMouseClick();
-
-        if(Input.GetButtonDown("Fire2"))
-        {
-            RemoveFocus();
-        }
+        PlayerIdle();      
 
     }
 
-
-    public void LeftMouseClick()
-    {
-        if (Input.GetButtonDown("Fire1"))
-        {
-            Ray ray = playerCam.ScreenPointToRay(Input.mousePosition);
-            RaycastHit hit;
-
-            if (Physics.Raycast(ray, out hit, 100))
-            {
-                Interactable interactable = hit.collider.GetComponent<Interactable>();
-                if (interactable != null)
-                {
-                    Debug.Log("Clicked on " + interactable.name);
-                    SetFocus(hit.collider.GetComponent<Interactable>());
-                }
-            }
-        }
-    }
-
-    void SetFocus(Interactable newFocus)
-    {
-        if (newFocus != focus)
-        {
-            if (focus != null)
-            {
-                focus.onDeFocused();
-            }
-            focus = newFocus;
-        }
-        newFocus.onFocused(transform);
-    }
-
-    void RemoveFocus()
-    {
-        if(focus != null)
-        {
-            focus.onDeFocused();
-        }
-        focus = null;
-    }
 
     void PlayerIdle()
     {
@@ -93,10 +45,10 @@ public class PlayerController : MonoBehaviour
 
     void PlayerMove()
     {
-        if (Input.GetKeyDown(KeyCode.LeftShift))
+        if (Input.GetKeyDown(KeyCode.LeftShift) && animator.GetBool("isWalking"))
         {
             moveSpeed = sprintSpeed;
-            animator.speed = sprintSpeed;
+            animator.speed = sprintSpeed - 0.5f;
         }
         if (Input.GetKeyUp(KeyCode.LeftShift))
         {

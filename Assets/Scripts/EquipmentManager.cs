@@ -13,7 +13,7 @@ public class EquipmentManager : MonoBehaviour
         instance = this; ;
     }
     #endregion
-
+    [SerializeField]
     Equipment[] currentEquipment;
 
     public delegate void OnEquipmentChanged(Equipment newItem, Equipment oldItem);

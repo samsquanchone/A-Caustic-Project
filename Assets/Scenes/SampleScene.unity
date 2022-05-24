@@ -2600,6 +2600,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 122c31a6e94f9884eb91229f608f1a08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  currentEquipment: []
 --- !u!114 &1819367303
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2647,9 +2648,9 @@ MonoBehaviour:
   - 2
   - 1
   treePrefab:
-  - {fileID: 5141645209801352665, guid: 9aa1bde74d4b9c145b96383b5c8353bc, type: 3}
-  - {fileID: 5141645209801352665, guid: 9aa1bde74d4b9c145b96383b5c8353bc, type: 3}
-  - {fileID: 5141645209801352665, guid: 9aa1bde74d4b9c145b96383b5c8353bc, type: 3}
+  - {fileID: 327131373723187146, guid: b9d6d175e1424a24cb39c9c552ba40f2, type: 3}
+  - {fileID: 327131373723187146, guid: b9d6d175e1424a24cb39c9c552ba40f2, type: 3}
+  - {fileID: 327131373723187146, guid: b9d6d175e1424a24cb39c9c552ba40f2, type: 3}
 --- !u!114 &1819367305
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3141,7 +3142,6 @@ MonoBehaviour:
   sneakSpeed: 0.5
   playerCam: {fileID: 963194227}
   distanceFromGround: 0
-  focus: {fileID: 0}
 --- !u!143 &9163470713691116551
 CharacterController:
   m_ObjectHideFlags: 0
@@ -3160,3 +3160,17 @@ CharacterController:
   m_SkinWidth: 0.0001
   m_MinMoveDistance: 0
   m_Center: {x: 0, y: 0.9, z: 0}
+--- !u!114 &9163470713691116553
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2486211742440133829}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c8b74dd6cc2ff4247a6888b3e5cdb022, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerCam: {fileID: 963194227}
+  focus: {fileID: 0}

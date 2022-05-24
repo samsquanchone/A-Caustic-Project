@@ -8,8 +8,9 @@ public class Interactable : MonoBehaviour
     public Transform interactionTransform;
 
     bool isFocus = false;
+    GameObject playerObj;
     Transform player;
-
+    public Animator animator;
     bool hasInteracted = false;
 
     
@@ -31,13 +32,15 @@ public class Interactable : MonoBehaviour
     public virtual void interact()
     {
         // This is meant to be overidden
-        //Debug.Log("Interacted with " + transform.name);
+        Debug.Log("Interacted with " + transform.name);
+
     }
 
-    public void onFocused(Transform playerTransform)
+    public void onFocused(GameObject playerObj)
     {
         isFocus = true;
-        player = playerTransform;
+        player = playerObj.transform;
+        animator = playerObj.GetComponent<Animator>();
         hasInteracted = false;
     }
 
